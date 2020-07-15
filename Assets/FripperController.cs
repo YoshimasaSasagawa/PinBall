@@ -31,24 +31,23 @@ public class FripperController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Application.platform == RuntimePlatform.WindowsEditor) {
-			//左矢印キーを押した時左フリッパーを動かす
-			if (Input.GetKeyDown (KeyCode.LeftArrow) && tag == "LeftFripperTag") {
-				SetAngle (this.flickAngle);
-			}
-			//右矢印キーを押した時右フリッパーを動かす
-			if (Input.GetKeyDown (KeyCode.RightArrow) && tag == "RightFripperTag") {
-				SetAngle (this.flickAngle);
-			}
-
+		//左矢印キーを押した時左フリッパーを動かす
+		if (Input.GetKeyDown (KeyCode.LeftArrow) && tag == "LeftFripperTag") {
+			SetAngle (this.flickAngle);
+		}
+		//右矢印キーを押した時右フリッパーを動かす
+		if (Input.GetKeyDown (KeyCode.RightArrow) && tag == "RightFripperTag") {
+			SetAngle (this.flickAngle);
+		}
 			//矢印キー離された時フリッパーを元に戻す
-			if (Input.GetKeyUp (KeyCode.LeftArrow) && tag == "LeftFripperTag") {
-				SetAngle (this.defaultAngle);
-			}
-			if (Input.GetKeyUp (KeyCode.RightArrow) && tag == "RightFripperTag") {
-				SetAngle (this.defaultAngle);
-			}
-		} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+		if (Input.GetKeyUp (KeyCode.LeftArrow) && tag == "LeftFripperTag") {
+			SetAngle (this.defaultAngle);
+		}
+		if (Input.GetKeyUp (KeyCode.RightArrow) && tag == "RightFripperTag") {
+			SetAngle (this.defaultAngle);
+		}
+
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			foreach (Touch touch in Input.touches) {
 				//タッチ開始の場合
 				if (touch.phase == TouchPhase.Began) {
@@ -75,6 +74,7 @@ public class FripperController : MonoBehaviour {
 					}
 				}
 			}
+
 			//スクリーンの左側がタッチされているとき
 			if (countTouchesL > 0 && tag == "LeftFripperTag") {
 				SetAngle (this.flickAngle);
